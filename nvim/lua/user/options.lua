@@ -22,6 +22,8 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.confirm = true
+vim.opt.signcolumn = 'yes:2' 
+vim.opt.completeopt = 'menuone,longest,preview'
 vim.opt.undofile = true
 vim.opt.backup = true
 vim.opt.backupdir:remove('.')

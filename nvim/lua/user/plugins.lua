@@ -103,6 +103,7 @@ use({
     vim.g.pasta_disabled_filetypes = { 'fugitive' }
   end,
 })
+
 use({
   'jessarcher/onedark.nvim',
   config = function()
@@ -214,7 +215,10 @@ use({
 
 use({
   'nvim-treesitter/nvim-treesitter',
-  run = ':TSUpdate',
+  run = function()
+    local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+    ts_update()
+  end,
   requires = {
     'nvim-treesitter/playground',
     'nvim-treesitter/nvim-treesitter-textobjects',
@@ -222,6 +226,34 @@ use({
   },
   config = function()
     require('user.plugins.treesitter')
+  end,
+})
+
+use({
+  'neovim/nvim-lspconfig',
+  requires = {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'b0o/schemastore.nvim',
+  },
+  config = function()
+    require('user/plugins/lspconfig')
+  end,
+})
+
+use({
+  'hrsh7th/nvim-cmp',
+  requires = {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+    'onsails/lspkind-nvim',
+  },
+  config = function()
+    require('user.plugins.cmp')
   end,
 })
 -- Automatically set up your configuration after cloning packer.nvim
