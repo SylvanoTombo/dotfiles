@@ -14,6 +14,15 @@ require('lspconfig').volar.setup({
 -- Tailwindcss
 require('lspconfig').tailwindcss.setup({capabilities=capabilities})
 
+-- JSON
+require('lspconfig').jsonls.setup({
+  capabilities = capabilities,
+  settings = {
+    json = {
+      schemas = require('schemastore').json.schemas()
+    }
+  }
+})
 
 -- Keymaps
 vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
